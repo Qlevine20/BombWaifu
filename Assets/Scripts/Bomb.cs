@@ -69,8 +69,6 @@ public class Bomb : MonoBehaviour
 
     private void Explode()
     {
-        flying = false;
-
         Explosion newExplosion = ExplosionPool.Instance.Get();
         newExplosion.transform.position = transform.position;
         newExplosion.transform.rotation = transform.rotation;
@@ -78,7 +76,20 @@ public class Bomb : MonoBehaviour
         newExplosion.gameObject.SetActive(true);
 
         newExplosion.Explode();
+        ReturnBomb();
+    }
 
+    private void ReturnBomb()
+    {
+        flying = false;
+        velocity = Vector3.zero;
+        direction = Vector3.zero;
+        straightPathPos = Vector3.zero;
+        startPos = Vector3.zero;
+        distanceTravelled = 0;
+        distance = 0;
+        duration = 0;
+        flightTimer = 0;
         BombPool.Instance.ReturnToPool(this);
     }
 }

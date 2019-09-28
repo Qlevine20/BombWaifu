@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 539298035}
   - component: {fileID: 539298034}
   - component: {fileID: 539298033}
+  - component: {fileID: 539298037}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -258,6 +259,25 @@ Transform:
   m_Father: {fileID: 1475637230}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &539298037
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539298032}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ee0748bffdd130a49a6c5490cd13ecc0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1475637228
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +289,7 @@ GameObject:
   - component: {fileID: 1475637230}
   - component: {fileID: 1475637229}
   - component: {fileID: 1475637231}
+  - component: {fileID: 1475637232}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -295,6 +316,7 @@ MonoBehaviour:
   myCollider: {fileID: 539298033}
   moveSpeed: 5
   rb: {fileID: 1475637231}
+  mainCamera: {fileID: 1988022556}
 --- !u!4 &1475637230
 Transform:
   m_ObjectHideFlags: 0
@@ -327,6 +349,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1475637232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475637228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eeb17fac305c9d4180e9ff7342f4470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1475881260
 GameObject:
   m_ObjectHideFlags: 0
