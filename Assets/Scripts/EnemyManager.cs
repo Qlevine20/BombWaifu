@@ -68,11 +68,18 @@ public class EnemyManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         int rand = UnityEngine.Random.Range(0, 100);
+        int randEnemySize = UnityEngine.Random.Range(3, 8);
         if (rand < spawnChance)
         {
-            EnemyBehaviour eBehav = EnemyPool.Instance.Get();
-            eBehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(new Vector3(UnityEngine.Random.Range(-spawnRange, spawnRange), 1.5f, UnityEngine.Random.Range(-spawnRange, spawnRange)));
-            eBehav.gameObject.SetActive(true);
+            float randX = UnityEngine.Random.Range(-spawnRange, spawnRange);
+            float randZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
+            for (int i = 0; i < randEnemySize; i++)
+            {
+                EnemyBehaviour eBehav = EnemyPool.Instance.Get();
+                eBehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(new Vector3(randX + i,1.5f,randZ - i));
+                eBehav.gameObject.SetActive(true);
+            }
+
         }
         StartCoroutine(SpawnEnemy(time));
     }

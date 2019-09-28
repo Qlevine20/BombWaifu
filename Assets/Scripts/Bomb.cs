@@ -77,7 +77,7 @@ public class Bomb : MonoBehaviour
         newExplosion.transform.localScale = transform.localScale;
         newExplosion.gameObject.SetActive(true);
 
-        newExplosion.AdjustExplosion(1);
+        newExplosion.AdjustExplosion(.5f);
         newExplosion.Explode();
         ReturnBomb();
     }
