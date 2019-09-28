@@ -16,4 +16,9 @@ public class AnimationController : MonoBehaviour
     {
         anim.SetFloat("Speed", playerController.rb.velocity.magnitude);
     }
+
+    public void PlayThrowBombAnimation()
+    {
+        anim.Play("Throw_Bomb");
+    }
 }
