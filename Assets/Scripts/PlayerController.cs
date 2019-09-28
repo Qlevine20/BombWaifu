@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public float acceleration;
     public float maxVelocity;
 
+    private bool stoppingZ = false;
+    private bool stoppingX = false;
+
 	public Camera mainCamera;
 
 
@@ -21,14 +24,30 @@ public class PlayerController : MonoBehaviour
     {
 		//moveInput = new Vector3 (Input.GetAxisRaw("Horizontal") * moveSpeed, 0f, Input.GetAxisRaw("Vertical") * moveSpeed);
         if(Input.GetKey(KeyCode.W))
+        {
             AddVelocity(ref velocity.z, acceleration);
+            stoppingZ = false;
+        }
         else if(Input.GetKey(KeyCode.S))
+        {
             AddVelocity(ref velocity.z, -acceleration);
+            stoppingZ = false;
+        }
+        else
+            stoppingZ = true;
 
         if(Input.GetKey(KeyCode.A))
+        {
             AddVelocity(ref velocity.x, -acceleration);
+            stoppingX = false;
+        }
         else if(Input.GetKey(KeyCode.D))
+        {
             AddVelocity(ref velocity.x, acceleration);
+            stoppingX = false;
+        }
+        else
+            stoppingX = true;
 
         //Player rotation stuff
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -67,5 +86,21 @@ public class PlayerController : MonoBehaviour
 	void FixedUpdate()
     {
         rb.velocity = velocity;
+    }
+
+    public IEnumerator ResetZVelocity()
+    {
+        while(stoppingZ)
+        {
+            yield return null;
+        }
+    }
+
+    public IEnumerator ResetXVelocity()
+    {
+        while(stoppingX)
+        {
+            yield return null;
+        }
     }
 }
