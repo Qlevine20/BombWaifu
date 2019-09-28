@@ -71,7 +71,7 @@ public class EnemyManager : MonoBehaviour
         if (rand < spawnChance)
         {
             EnemyBehaviour eBehav = EnemyPool.Instance.Get();
-            eBehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(new Vector3(UnityEngine.Random.Range(-spawnRange, spawnRange), 1, UnityEngine.Random.Range(-spawnRange, spawnRange)));
+            eBehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(new Vector3(UnityEngine.Random.Range(-spawnRange, spawnRange), 1.5f, UnityEngine.Random.Range(-spawnRange, spawnRange)));
             eBehav.gameObject.SetActive(true);
         }
         StartCoroutine(SpawnEnemy(time));

@@ -19272,7 +19272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 5724351355086046974}
-  radius: 10
+  radius: 3
   explosionForce: 800
   explosionUpwardsModifier: 100
   layersToCollideWith:
