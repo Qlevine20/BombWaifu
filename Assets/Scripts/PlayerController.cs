@@ -25,10 +25,13 @@ public class PlayerController : MonoBehaviour
 
 	void Update ()
     {
-		moveInput = new Vector3 (Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y, Input.GetAxisRaw("Vertical") * moveSpeed);
-        rb.velocity = moveInput;
+		moveInput = new Vector3 (Input.GetAxisRaw("Horizontal") * moveSpeed, 0f, Input.GetAxisRaw("Vertical") * moveSpeed);
+        //rb.velocity = moveInput;
 
-        //Raycast stuff
+
+
+        //Player rotation stuff
+
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 		Plane groundPlane = new Plane (Vector3.up, Vector3.zero);
 		float rayLength;
@@ -40,12 +43,14 @@ public class PlayerController : MonoBehaviour
 			transform.LookAt(new Vector3 (pointToLook.x, transform.position.y, pointToLook.z));
 		}
 
+
+
         //Bomb throwing
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            //Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100, interactionMask))
+            if (Physics.Raycast(cameraRay, out hit, 100, interactionMask))
             {
                 Bomb newBomb = BombPool.Instance.Get();
                 newBomb.transform.position = bombThrowLocation.position;
@@ -57,8 +62,8 @@ public class PlayerController : MonoBehaviour
         }
 	}
     
-	void FixedUpdate ()
+	void FixedUpdate()
     {
-        
-	}
+        rb.velocity = moveInput;
+    }
 }
