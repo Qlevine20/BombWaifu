@@ -56,7 +56,7 @@ public class Explosion : MonoBehaviour
         {
             // Do Damage
             DoDamage(col);
-
+            Debug.Log("Doing damage: " + col.name);
             // Apply Force
             Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
             if(rb != null)
@@ -70,6 +70,9 @@ public class Explosion : MonoBehaviour
     private void DoDamage(Collider colliderToDamage)
     {
         // Damage
-        //Debug.Log("Put damage code here");
+        Debug.Log("Put damage code here");
+        EnemyBehaviour eBehav = colliderToDamage.GetComponent<EnemyBehaviour>();
+        if(eBehav)
+            EnemyPool.Instance.ReturnToPool(eBehav);
     }
 }
