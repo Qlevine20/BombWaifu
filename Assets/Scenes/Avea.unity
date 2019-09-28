@@ -715,7 +715,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -761,9 +761,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0.15
-  cameraHeight: 20
-  cameraDistance: -5
-  xCameraRotation: 75
+  cameraHeight: 16.4
+  cameraDistance: -9.3
+  xCameraRotation: 62.6
   target: {fileID: 539298036}
 --- !u!1 &2017648563
 GameObject:
