@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombThrowLocation: {fileID: 1936570602}
+  bombThrowCooldown: 0.3
   interactionMask:
     serializedVersion: 2
     m_Bits: 1537
