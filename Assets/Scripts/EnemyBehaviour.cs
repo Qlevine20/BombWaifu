@@ -7,13 +7,16 @@ public class EnemyBehaviour : MonoBehaviour
 {
     UnityEngine.AI.NavMeshAgent agent;
     EnemyManager em;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         em = EnemyManager.instance;
+        anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(em.player.position);
         agent.speed = agent.speed + (agent.speed * em.speedMod);
+        anim.speed = anim.speed + (anim.speed * em.speedMod);
     }
 
     // Update is called once per frame
