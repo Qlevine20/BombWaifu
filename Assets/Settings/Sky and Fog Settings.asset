@@ -58,7 +58,7 @@ MonoBehaviour:
   baseHeight:
     m_OverrideState: 0
     m_Value: 0
-  maxHeight:
+  maximumHeight:
     m_OverrideState: 0
     m_Value: 10
   anisotropy:
