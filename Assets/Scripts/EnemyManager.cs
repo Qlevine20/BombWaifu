@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -9,8 +10,12 @@ public class EnemyManager : MonoBehaviour
 
     public Transform player;
 
+    public GameObject enemyPrefab;
     private float timeModder = 0;
     private float timeChange = 5;
+
+    public float spawnChance;
+    public float spawnRange = 50;
 
     [HideInInspector]
     public float speedMod = 0;
@@ -30,6 +35,9 @@ public class EnemyManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         GameOverPanel.SetActive(false);
+
+        UnityEngine.Random.InitState(DateTime.Now.Millisecond);
+        StartCoroutine(SpawnEnemy(2));
     }
 
     private void Update()
@@ -40,6 +48,8 @@ public class EnemyManager : MonoBehaviour
             timeModder = 0;
             speedMod += .2f;
         }
+
+
         
     }
 
@@ -52,5 +62,17 @@ public class EnemyManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerator SpawnEnemy(int time)
+    {
+        yield return new WaitForSeconds(time);
+        int rand = UnityEngine.Random.Range(0, 100);
+        if(rand < spawnChance)
+        {
+            Instantiate(enemyPrefab);
+            enemyPrefab.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(new Vector3(UnityEngine.Random.Range(-spawnRange, spawnRange), 1, UnityEngine.Random.Range(-spawnRange, spawnRange)));
+        }
+        StartCoroutine(SpawnEnemy(time));
     }
 }

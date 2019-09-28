@@ -14,7 +14,6 @@ public class EnemyBehaviour : MonoBehaviour
         em = EnemyManager.instance;
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(em.player.position);
         agent.speed = agent.speed + (agent.speed * em.speedMod);
         anim.speed = anim.speed + (anim.speed * em.speedMod);
     }
