@@ -315,8 +315,9 @@ MonoBehaviour:
     m_Bits: 1537
   myCollider: {fileID: 539298033}
   rb: {fileID: 1475637231}
-  acceleration: 5
+  acceleration: 8
   maxVelocity: 10
+  stopTime: 0.15
   mainCamera: {fileID: 1988022556}
 --- !u!4 &1475637230
 Transform:
