@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private bool stoppingZ = false;
     private bool stoppingX = false;
+    public float stopTime;
 
 	public Camera mainCamera;
 
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
             stoppingZ = false;
         }
         else
-            stoppingZ = true;
+            StartCoroutine(ResetZVelocity());
 
         if(Input.GetKey(KeyCode.A))
         {
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
             stoppingX = false;
         }
         else
-            stoppingX = true;
+            StartCoroutine(ResetXVelocity());
 
         //Player rotation stuff
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -90,16 +91,30 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator ResetZVelocity()
     {
+        float t = Mathf.Abs(velocity.z) * stopTime;
+        float startZVel = velocity.z;
+        stoppingZ = true;
         while(stoppingZ)
         {
+            if(velocity.z == 0)
+                stoppingZ = false;
+            velocity.z = Mathf.Lerp(0, startZVel, t);
+            t -= Time.deltaTime;
             yield return null;
         }
     }
 
     public IEnumerator ResetXVelocity()
     {
+        float t = Mathf.Abs(velocity.x) * stopTime;
+        float startXVel = velocity.x;
+        stoppingX = true;
         while(stoppingX)
         {
+            if(velocity.x == 0)
+                stoppingX = false;
+            velocity.x = Mathf.Lerp(0, startXVel, t);
+            t -= Time.deltaTime;
             yield return null;
         }
     }
