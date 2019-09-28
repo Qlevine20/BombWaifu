@@ -316,6 +316,8 @@ MonoBehaviour:
   myCollider: {fileID: 539298033}
   moveSpeed: 5
   rb: {fileID: 1475637231}
+  acceleration: 5
+  maxVelocity: 10
   mainCamera: {fileID: 1988022556}
 --- !u!4 &1475637230
 Transform:
@@ -361,8 +363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eeb17fac305c9d4180e9ff7342f4470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1475637229}
-  anim: {fileID: 539298037}
 --- !u!1 &1475881260
 GameObject:
   m_ObjectHideFlags: 0

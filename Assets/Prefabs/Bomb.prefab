@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed420c8913e9294590ad6a4661a0889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myCollider: {fileID: 4043491832428816074}
   acceleration: 60
   flightPath:
     serializedVersion: 2

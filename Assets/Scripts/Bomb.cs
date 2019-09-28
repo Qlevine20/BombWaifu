@@ -6,6 +6,7 @@ public class Bomb : MonoBehaviour
 {
     private bool flying = false;
     private Collider owner;
+    public Collider myCollider;
     private Vector3 lastPos;
     private float flightTimer = 0;
     private Vector3 velocity = Vector3.zero;
@@ -56,6 +57,7 @@ public class Bomb : MonoBehaviour
     {
         flying = true;
         owner = thrownByCollider;
+        Physics.IgnoreCollision(myCollider, thrownByCollider);
 
         startPos = transform.position;
         straightPathPos = transform.position;
