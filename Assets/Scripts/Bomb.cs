@@ -42,8 +42,6 @@ public class Bomb : MonoBehaviour
                 // Don't collide with self
                 if(hits[i].collider.gameObject == gameObject || hits[i].collider == owner)
                     continue;
-
-                Debug.Log(hits[i].collider.gameObject.name);
                 
                 transform.position = hits[i].point;
                 Explode();
@@ -72,5 +70,15 @@ public class Bomb : MonoBehaviour
     private void Explode()
     {
         flying = false;
+
+        Explosion newExplosion = ExplosionPool.Instance.Get();
+        newExplosion.transform.position = transform.position;
+        newExplosion.transform.rotation = transform.rotation;
+        newExplosion.transform.localScale = transform.localScale;
+        newExplosion.gameObject.SetActive(true);
+
+        newExplosion.Explode();
+
+        BombPool.Instance.ReturnToPool(this);
     }
 }

@@ -48,9 +48,9 @@ public class PlayerController : MonoBehaviour
         //Bomb throwing
         if (Input.GetMouseButtonDown(0))
         {
-            //Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(cameraRay, out hit, 100, interactionMask))
+            if (Physics.Raycast(ray, out hit, 100, interactionMask))
             {
                 Bomb newBomb = BombPool.Instance.Get();
                 newBomb.transform.position = bombThrowLocation.position;
