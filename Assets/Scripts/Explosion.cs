@@ -61,7 +61,8 @@ public class Explosion : MonoBehaviour
             Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
             if(rb != null)
             {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpwardsModifier);
+                if(!rb.gameObject.CompareTag("Player"))
+                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpwardsModifier);
             }
         }
     }

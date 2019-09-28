@@ -316,6 +316,8 @@ MonoBehaviour:
   myCollider: {fileID: 539298033}
   moveSpeed: 5
   rb: {fileID: 1475637231}
+  acceleration: 5
+  maxVelocity: 10
   mainCamera: {fileID: 1988022556}
 --- !u!4 &1475637230
 Transform:
