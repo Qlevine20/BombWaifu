@@ -31,6 +31,6 @@ public class Camera_Follow_Player_Smooth : MonoBehaviour
         Vector3 offset = new Vector3(0, cameraHeight, cameraDistance);
         Vector3 goalPos = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, goalPos, ref velocity, smoothTime);
-        transform.eulerAngles = new Vector3(xCameraRotation, 0, 0);
+        //transform.eulerAngles = new Vector3(xCameraRotation, 0, 0);
     }
 }
