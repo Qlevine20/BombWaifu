@@ -21,11 +21,11 @@ public class PlayerController : MonoBehaviour
 
 	void Update ()
     {
-		moveInput = new Vector3 (Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        transform.position += moveInput * moveSpeed * Time.deltaTime;
+		moveInput = new Vector3 (Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y, Input.GetAxisRaw("Vertical") * moveSpeed);
+        rb.velocity = moveInput;
 
         //Raycast stuff
-        Ray cameraRay = mainCamera.ScreenPointToRay (Input.mousePosition);
+        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 		Plane groundPlane = new Plane (Vector3.up, Vector3.zero);
 		float rayLength;
 
@@ -39,6 +39,6 @@ public class PlayerController : MonoBehaviour
     
 	void FixedUpdate ()
     {
-		
+        
 	}
 }
