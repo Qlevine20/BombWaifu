@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
     public Transform player;
-
+    public TextMeshProUGUI scoreText;
     public GameObject enemyPrefab;
     private float timeModder = 0;
     private float timeChange = 5;
@@ -35,7 +36,7 @@ public class EnemyManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         GameOverPanel.SetActive(false);
-
+        GameManager.instance.SetScore(0);
         UnityEngine.Random.InitState(DateTime.Now.Millisecond);
         StartCoroutine(SpawnEnemy(2));
     }
@@ -57,11 +58,14 @@ public class EnemyManager : MonoBehaviour
     {
         collided = true;
         GameOverPanel.SetActive(true);
+        scoreText.text = "Score: " + GameManager.instance.GetScore();
+        GameManager.instance.SaveScore();
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.instance.SetScore(0);
     }
 
     IEnumerator SpawnEnemy(int time)

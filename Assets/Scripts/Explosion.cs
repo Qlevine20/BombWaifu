@@ -70,7 +70,11 @@ public class Explosion : MonoBehaviour
     {
         // Damage
         EnemyBehaviour eBehav = colliderToDamage.GetComponent<EnemyBehaviour>();
-        if(eBehav)
+        if (eBehav)
+        {
             EnemyPool.Instance.ReturnToPool(eBehav);
+            GameManager.instance.AddToScore(1);
+        }
+            
     }
 }
