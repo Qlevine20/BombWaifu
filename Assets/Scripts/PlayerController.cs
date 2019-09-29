@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
 	public Camera mainCamera;
 
+    private bool hasHeartUpgrade = false;
+
     void Start() {
         audioSource = GetComponent<AudioSource>();
         bombThrowTimer = bombThrowCooldown;
@@ -32,6 +34,15 @@ public class PlayerController : MonoBehaviour
 
 	void Update ()
     {
+        if(hasHeartUpgrade)
+        {
+            if(heartUpgradTimer >= heartUpgradTime)
+            {
+                hasHeartUpgrade = false;
+                heartUpgradTimer = 0;
+            }
+            heartUpgradTimer += Time.deltaTime;
+        }
 		//moveInput = new Vector3 (Input.GetAxisRaw("Horizontal") * moveSpeed, 0f, Input.GetAxisRaw("Vertical") * moveSpeed);
         if(Input.GetKey(KeyCode.W))
         {
@@ -82,7 +93,13 @@ public class PlayerController : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 100, interactionMask))
                 {
-                    Bomb newBomb = BombPool.Instance.Get();
+                    Bomb newBomb;
+
+                    if(hasHeartUpgrade)
+                        newBomb = HeartBombPool.Instance.Get();
+                    else
+                        newBomb = PotatoBombPool.Instance.Get();
+
                     newBomb.transform.position = bombThrowLocation.position;
                     newBomb.transform.rotation = bombThrowLocation.rotation;
                     newBomb.transform.localScale = bombThrowLocation.localScale;
@@ -138,5 +155,13 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision other) {
         StartCoroutine(ResetZVelocity());
         StartCoroutine(ResetXVelocity());
+    }
+
+    public float heartUpgradTime;
+    private float heartUpgradTimer = 0;
+
+    public void GainHeartUpgrade()
+    {
+        hasHeartUpgrade = true;
     }
 }
