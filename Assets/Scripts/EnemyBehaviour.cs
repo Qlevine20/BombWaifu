@@ -62,5 +62,7 @@ public class EnemyBehaviour : MonoBehaviour
         dying = true;
         GetComponent<Renderer>().material = redMat;
         GameManager.instance.AddToScore(1);
+        GetComponent<AudioSource>().clip = em.maleDeathSounds[Random.Range(0, em.maleDeathSounds.Length)];
+        GetComponent<AudioSource>().Play();
     }
 }
