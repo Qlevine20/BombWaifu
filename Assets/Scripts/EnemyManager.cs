@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -63,6 +63,7 @@ public class EnemyManager : MonoBehaviour
         collided = true;
         GameOverPanel.SetActive(true);
         scoreText.text = "Score: " + GameManager.instance.GetScore();
+        GetComponent<AudioSource>().Play();
     }
 
     public void RestartGame()
