@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     public Transform player;
     public TextMeshProUGUI scoreText;
     public GameObject enemyPrefab;
+    public GameObject largeEnemyPrefab;
     private float timeModder = 0;
     private float timeChange = 5;
     public TMP_InputField nameInput;
@@ -100,9 +101,21 @@ public class EnemyManager : MonoBehaviour
                 Vector3 loc = FindPlaceToSpawnEnemy(8,10);
                 if(loc != Vector3.zero)
                 {
-                    EnemyBehaviour eBehav = EnemyPool.Instance.Get();
-                    eBehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(loc);
-                    eBehav.gameObject.SetActive(true);
+                    int largeRand = UnityEngine.Random.Range(0, 600);
+                    if(largeRand == 599)
+                    {
+                        GameObject large = Instantiate(largeEnemyPrefab);
+                        EnemyBehaviour largeEbehav = large.GetComponent<EnemyBehaviour>();
+                        largeEbehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(loc);
+
+                    }
+                    else
+                    {
+                        EnemyBehaviour eBehav = EnemyPool.Instance.Get();
+                        eBehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(loc);
+                        eBehav.gameObject.SetActive(true);
+                    }
+
                 }
 
             }
