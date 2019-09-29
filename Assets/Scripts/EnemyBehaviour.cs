@@ -34,7 +34,9 @@ public class EnemyBehaviour : MonoBehaviour
                 EnemyPool.Instance.ReturnToPool(this);
             }
             deathTimer += Time.deltaTime;
+            return;
         }
+
         if(agent && em)
         {
             agent.SetDestination(em.player.position);
@@ -54,5 +56,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         agent.enabled = false;
         dying = true;
+        GameManager.instance.AddToScore(1);
     }
 }

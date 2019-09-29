@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private string filePath;
+    [HideInInspector]
+    public string filePath;
     private int score = 0;
 
     private List<ScoreValue> scores;
