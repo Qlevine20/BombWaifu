@@ -34,7 +34,7 @@ public class EnemyManager : MonoBehaviour
     public AudioClip[] deathSounds;
     public AudioClip[] maleDeathSounds;
 
-    private void Awake()
+    private void Start()
     {
         if(instance == null)
         {
