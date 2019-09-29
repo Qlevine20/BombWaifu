@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
 
 	public Rigidbody rb;
 
+    AudioSource audioSource;
+    public AudioClip throwBombClip;
+
     private Vector3 velocity;
     public float acceleration;
     public float maxVelocity;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
 	public Camera mainCamera;
 
     void Start() {
+        audioSource = GetComponent<AudioSource>();
         bombThrowTimer = bombThrowCooldown;
     }
 
@@ -71,6 +75,9 @@ public class PlayerController : MonoBehaviour
         {
             if(bombThrowTimer >= bombThrowCooldown)
             {
+                audioSource.clip = throwBombClip;
+                audioSource.Play();
+
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 100, interactionMask))

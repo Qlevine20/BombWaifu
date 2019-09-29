@@ -62,6 +62,7 @@ public class EnemyManager : MonoBehaviour
         GameOverPanel.SetActive(true);
         scoreText.text = "Score: " + GameManager.instance.GetScore();
         GameManager.instance.SaveScore();
+        GetComponent<AudioSource>().Play();
     }
 
     public void RestartGame()
