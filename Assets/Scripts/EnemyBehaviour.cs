@@ -11,6 +11,8 @@ public class EnemyBehaviour : MonoBehaviour
     public float deathTime;
     private float deathTimer = 0;
     private bool dying;
+    public Material redMat;
+    private Material defaultMat;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = agent.speed + (agent.speed * em.speedMod);
         anim.speed = anim.speed + (anim.speed * em.speedMod);
+        defaultMat = GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
@@ -32,6 +35,7 @@ public class EnemyBehaviour : MonoBehaviour
                 dying = false;
                 agent.enabled = true;
                 EnemyPool.Instance.ReturnToPool(this);
+                GetComponent<Renderer>().material = defaultMat;
             }
             deathTimer += Time.deltaTime;
             return;
@@ -56,6 +60,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         agent.enabled = false;
         dying = true;
+        GetComponent<Renderer>().material = redMat;
         GameManager.instance.AddToScore(1);
     }
 }
