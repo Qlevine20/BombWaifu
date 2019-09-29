@@ -102,7 +102,7 @@ public class EnemyManager : MonoBehaviour
                 Vector3 loc = FindPlaceToSpawnEnemy(8,10);
                 if(loc != Vector3.zero)
                 {
-                    int largeRand = UnityEngine.Random.Range(0, 600);
+                    int largeRand = UnityEngine.Random.Range(0, 100);
                     if(largeRand == 599)
                     {
                         GameObject large = Instantiate(largeEnemyPrefab);
