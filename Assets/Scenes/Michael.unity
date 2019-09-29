@@ -999,6 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104497ec9c26a744e897f2366bd02abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filePath: 
 --- !u!4 &729475931
 Transform:
   m_ObjectHideFlags: 0
@@ -1613,13 +1614,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombThrowLocation: {fileID: 1936570602}
-  bombThrowCooldown: 0
+  bombThrowCooldown: 0.5
   interactionMask:
     serializedVersion: 2
     m_Bits: 1537
   myCollider: {fileID: 539298033}
   rb: {fileID: 1475637231}
-  throwBombClip: {fileID: 8300000, guid: e3b71d6754a7b1e4a982d99646a2057e, type: 3}
+  throwBombClip: {fileID: 0}
   acceleration: 5
   maxVelocity: 5
   stopTime: 0.3
@@ -2309,7 +2310,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   spawnChance: 80
-  spawnRange: 50
+  maxSpawnRange: 50
+  minSpawnRange: 20
   speedMod: 0
   collided: 0
   GameOverPanel: {fileID: 722052873}
@@ -2337,8 +2339,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 16f9cc6791f53bf49a3794ed215ca4aa, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
