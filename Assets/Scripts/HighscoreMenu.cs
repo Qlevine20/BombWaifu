@@ -14,7 +14,15 @@ public class HighscoreMenu : MonoBehaviour
 
     private void Start()
     {
-        
+        scores = new List<GameManager.ScoreValue>();
+        LoadScores();
+        foreach(GameManager.ScoreValue score in scores)
+        {
+            GameObject scoreText = Instantiate(highScoreTextPrefab);
+            scoreText.transform.SetParent(content);
+            scoreText.transform.SetAsLastSibling();
+            scoreText.GetComponent<Text>().text = "Score: " + score.scoreValue;
+        }
     }
 
     void LoadScores()
@@ -23,9 +31,14 @@ public class HighscoreMenu : MonoBehaviour
         string[] scoreVals = text.Split('\n');
         foreach(string score in scoreVals)
         {
-            GameManager.ScoreValue val = new GameManager.ScoreValue();
-            val.scoreValue = JsonUtility.FromJson<GameManager.ScoreValue>(score).scoreValue;
-            scores.Add(val);
+            if(score != string.Empty)
+            {
+                Debug.Log(score);
+                GameManager.ScoreValue val = new GameManager.ScoreValue();
+                val.scoreValue = JsonUtility.FromJson<GameManager.ScoreValue>(score).scoreValue;
+                scores.Add(val);
+            }
+
         }
     }
 }
