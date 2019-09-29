@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombThrowLocation: {fileID: 1936570602}
+  bombThrowCooldown: 0.3
   interactionMask:
     serializedVersion: 2
     m_Bits: 1537
@@ -714,7 +715,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -760,9 +761,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0.15
-  cameraHeight: 20
-  cameraDistance: -5
-  xCameraRotation: 75
+  cameraHeight: 16.4
+  cameraDistance: -9.3
+  xCameraRotation: 62.6
   target: {fileID: 539298036}
 --- !u!1 &2017648563
 GameObject:
@@ -814,7 +815,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: d56325327f8f3494f9b4441ce1626c1c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -21,6 +21,9 @@ public class Bomb : MonoBehaviour
     private float curveScaler;
     public float defaultCurveScaler;
 
+    public Transform gfx;
+    public float rotationSpeed;
+
 
     void Start()
     {
@@ -31,6 +34,7 @@ public class Bomb : MonoBehaviour
     {
         if(flying)
         {
+            // Position
             flightTimer += Time.deltaTime;
             velocity += direction * acceleration * Time.deltaTime;
             straightPathPos += velocity * Time.deltaTime;
@@ -50,6 +54,11 @@ public class Bomb : MonoBehaviour
 
             transform.position = pos;
             lastPos = transform.position;
+
+
+            // Rotation
+            gfx.Rotate(Vector3.forward, rotationSpeed, Space.Self);
+
         }
     }
 

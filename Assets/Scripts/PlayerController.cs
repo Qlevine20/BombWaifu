@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform bombThrowLocation;
+    public float bombThrowCooldown;
+    private float bombThrowTimer;
     public LayerMask interactionMask;
     public Collider myCollider;
 
@@ -20,6 +22,9 @@ public class PlayerController : MonoBehaviour
 
 	public Camera mainCamera;
 
+    void Start() {
+        bombThrowTimer = bombThrowCooldown;
+    }
 
 	void Update ()
     {
@@ -64,19 +69,24 @@ public class PlayerController : MonoBehaviour
         //Bomb throwing
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100, interactionMask))
+            if(bombThrowTimer >= bombThrowCooldown)
             {
-                Debug.Log(hit.point);
-                Bomb newBomb = BombPool.Instance.Get();
-                newBomb.transform.position = bombThrowLocation.position;
-                newBomb.transform.rotation = bombThrowLocation.rotation;
-                newBomb.transform.localScale = bombThrowLocation.localScale;
-                newBomb.gameObject.SetActive(true);
-                newBomb.Throw(hit.point, myCollider);
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 100, interactionMask))
+                {
+                    Debug.Log(hit.point);
+                    Bomb newBomb = BombPool.Instance.Get();
+                    newBomb.transform.position = bombThrowLocation.position;
+                    newBomb.transform.rotation = bombThrowLocation.rotation;
+                    newBomb.transform.localScale = bombThrowLocation.localScale;
+                    newBomb.gameObject.SetActive(true);
+                    newBomb.Throw(hit.point, myCollider);
+                }
+                bombThrowTimer = 0;
             }
         }
+        bombThrowTimer += Time.deltaTime;
 	}
 
     private void AddVelocity(ref float velAxis, float accel)
