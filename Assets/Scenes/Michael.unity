@@ -630,6 +630,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8393020424082469069, guid: 8730a72acb7631740a8ccb93a7ec8b18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8393020424082469105, guid: 8730a72acb7631740a8ccb93a7ec8b18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1014,7 +1019,7 @@ MonoBehaviour:
   maxVelocity: 5
   stopTime: 0.3
   mainCamera: {fileID: 1988022556}
-  heartUpgradTime: 0
+  heartUpgradTime: 12
 --- !u!4 &1475637230
 Transform:
   m_ObjectHideFlags: 0
@@ -1841,5 +1846,11 @@ PrefabInstance:
       propertyPath: GameOverPanel
       value: 
       objectReference: {fileID: 737226015}
+    - target: {fileID: 2833688924627221458, guid: b2986f7181faf244ead18f9d3908e14e,
+        type: 3}
+      propertyPath: largeEnemyPrefab
+      value: 
+      objectReference: {fileID: 5646555962136403871, guid: 23f21475d353d6e429a0a9029533e4d6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2986f7181faf244ead18f9d3908e14e, type: 3}
