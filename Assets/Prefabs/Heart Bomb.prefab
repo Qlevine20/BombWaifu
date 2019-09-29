@@ -146,9 +146,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4043491830638812878}
-  - component: {fileID: 4043491830638812873}
+  - component: {fileID: 5852776728626710463}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: Heart Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4043491830638812873
+--- !u!114 &5852776728626710463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,40 +179,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 4043491830638812872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed420c8913e9294590ad6a4661a0889, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c767799caa17cb45ab95229458ee932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myCollider: {fileID: 6083439786619907682}
-  acceleration: 60
+  acceleration: 90
   flightPath:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 3.789309
-      outSlope: 3.789309
+      inSlope: 4.781718
+      outSlope: 4.781718
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.044813268
+      outWeight: 0.08647914
     - serializedVersion: 3
       time: 0.35
       value: 1
-      inSlope: -0.014441878
-      outSlope: -0.014441878
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 3
       inWeight: 0.33333334
-      outWeight: 0.35652736
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: -0.002746582
-      inSlope: -2.529571
-      outSlope: -2.529571
+      value: 0
+      inSlope: -2.475422
+      outSlope: -2.475422
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.043426752
+      inWeight: 0.08994992
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

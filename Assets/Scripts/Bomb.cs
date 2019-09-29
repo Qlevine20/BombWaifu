@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
@@ -26,7 +24,6 @@ public class Bomb : MonoBehaviour
 
     public TrailRenderer trail;
 
-
     void Start()
     {
         lastPos = transform.position;
@@ -42,14 +39,14 @@ public class Bomb : MonoBehaviour
             straightPathPos += velocity * Time.deltaTime;
             distanceTravelled = (startPos - straightPathPos).magnitude;
             var pos = straightPathPos + transform.up * flightPath.Evaluate(distanceTravelled/distance) * curveScaler;
-            
+
             RaycastHit[] hits = Physics.RaycastAll(lastPos, pos - lastPos, Vector3.Distance(lastPos, pos));
             for (int i = hits.Length - 1; i >= 0; i--)
             {
                 // Don't collide with self
                 if(hits[i].collider.gameObject == gameObject || hits[i].collider == owner)
                     continue;
-                
+
                 transform.position = hits[i].point;
                 Explode();
             }
@@ -93,7 +90,7 @@ public class Bomb : MonoBehaviour
         ReturnBomb();
     }
 
-    private void ReturnBomb()
+    protected virtual void ReturnBomb()
     {
         flying = false;
         velocity = Vector3.zero;
@@ -104,10 +101,9 @@ public class Bomb : MonoBehaviour
         distance = 0;
         duration = 0;
         flightTimer = 0;
-        trail.Clear();
-        BombPool.Instance.ReturnToPool(this);
+        trail.Clear();        
     }
-    
+
     void OnCollisionEnter(Collision other) {
         if(other.collider.gameObject.CompareTag("Weebs"))
         {

@@ -29,6 +29,10 @@ public class EnemyManager : MonoBehaviour
     public bool collided = false;
 
     public GameObject GameOverPanel;
+
+    public AudioClip[] deathSounds;
+    public AudioClip[] maleDeathSounds;
+
     private void Awake()
     {
         if(instance == null)
@@ -63,6 +67,7 @@ public class EnemyManager : MonoBehaviour
         collided = true;
         GameOverPanel.SetActive(true);
         scoreText.text = "Score: " + GameManager.instance.GetScore();
+        GetComponent<AudioSource>().clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
         GetComponent<AudioSource>().Play();
         Time.timeScale = 0.1f;
     }
@@ -121,11 +126,11 @@ public class EnemyManager : MonoBehaviour
                 if(Vector3.Distance(hit.point,player.position) > minSpawnRange)
                     return newPos;
 
-                Debug.Log("Distance: " + Vector3.Distance(hit.point, player.position));
+                //Debug.Log("Distance: " + Vector3.Distance(hit.point, player.position));
             }
             else
             {
-                Debug.Log("coords: " + newPos);
+                //Debug.Log("coords: " + newPos);
             }
         }
         return Vector3.zero;
