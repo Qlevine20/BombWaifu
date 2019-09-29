@@ -127,4 +127,9 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
     }
+
+    void OnCollisionEnter(Collision other) {
+        StartCoroutine(ResetZVelocity());
+        StartCoroutine(ResetXVelocity());
+    }
 }
