@@ -18,7 +18,8 @@ public class EnemyManager : MonoBehaviour
     public LayerMask spawnMask;
 
     public float spawnChance;
-    public float spawnRange = 50;
+    public float maxSpawnRange = 50;
+    public float minSpawnRange = 20;
 
     [HideInInspector]
     public float speedMod = 0;
@@ -77,8 +78,6 @@ public class EnemyManager : MonoBehaviour
         int randEnemySize = UnityEngine.Random.Range(3, 8);
         if (rand < spawnChance)
         {
-            float randX = UnityEngine.Random.Range(-spawnRange, spawnRange);
-            float randZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
             for (int i = 0; i < randEnemySize; i++)
             {
                 Vector3 loc = FindPlaceToSpawnEnemy(8,10);
@@ -101,13 +100,16 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < spawnLocationChecks; i++)
         {
-            float randLocationX = UnityEngine.Random.Range(player.position.x + (-SpawnDist), player.position.x + SpawnDist);
-            float randLocationZ = UnityEngine.Random.Range(player.position.z + (-SpawnDist), player.position.z + SpawnDist);
+            float randLocationX = UnityEngine.Random.Range(player.position.x + (-maxSpawnRange), player.position.x + maxSpawnRange);
+            float randLocationZ = UnityEngine.Random.Range(player.position.z + (-maxSpawnRange), player.position.z + maxSpawnRange);
             Vector3 newPos = new Vector3(randLocationX, 1.5f, randLocationZ);
             RaycastHit hit;
-            if(Physics.Raycast(newPos,Vector3.down, out hit, 10f, spawnMask))
+            if(Physics.Raycast(newPos,Vector3.down, out hit, maxSpawnRange, spawnMask))
             {
-                return newPos;
+                if(Vector3.Distance(hit.point,player.position) > minSpawnRange)
+                    return newPos;
+
+                Debug.Log("Distance: " + Vector3.Distance(hit.point, player.position));
             }
             else
             {

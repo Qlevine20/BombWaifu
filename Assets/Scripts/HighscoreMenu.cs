@@ -23,7 +23,9 @@ public class HighscoreMenu : MonoBehaviour
         string[] scoreVals = text.Split('\n');
         foreach(string score in scoreVals)
         {
-            
+            GameManager.ScoreValue val = new GameManager.ScoreValue();
+            val.scoreValue = JsonUtility.FromJson<GameManager.ScoreValue>(score).scoreValue;
+            scores.Add(val);
         }
     }
 }
