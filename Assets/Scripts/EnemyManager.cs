@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
     public Transform player;
-
+    public TextMeshProUGUI scoreText;
     public GameObject enemyPrefab;
     private float timeModder = 0;
     private float timeChange = 5;
+
+    public LayerMask spawnMask;
 
     public float spawnChance;
     public float spawnRange = 50;
@@ -35,7 +38,7 @@ public class EnemyManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         GameOverPanel.SetActive(false);
-
+        GameManager.instance.SetScore(0);
         UnityEngine.Random.InitState(DateTime.Now.Millisecond);
         StartCoroutine(SpawnEnemy(2));
     }
@@ -57,11 +60,14 @@ public class EnemyManager : MonoBehaviour
     {
         collided = true;
         GameOverPanel.SetActive(true);
+        scoreText.text = "Score: " + GameManager.instance.GetScore();
+        GameManager.instance.SaveScore();
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.instance.SetScore(0);
     }
 
     public void MainMenuButton()
@@ -80,12 +86,39 @@ public class EnemyManager : MonoBehaviour
             float randZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
             for (int i = 0; i < randEnemySize; i++)
             {
-                EnemyBehaviour eBehav = EnemyPool.Instance.Get();
-                eBehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(new Vector3(randX + i,1.5f,randZ - i));
-                eBehav.gameObject.SetActive(true);
+                Vector3 loc = FindPlaceToSpawnEnemy(8,10);
+                if(loc != Vector3.zero)
+                {
+                    EnemyBehaviour eBehav = EnemyPool.Instance.Get();
+                    eBehav.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(loc);
+                    eBehav.gameObject.SetActive(true);
+                }
+
             }
 
         }
         StartCoroutine(SpawnEnemy(time));
+    }
+
+
+    Vector3 FindPlaceToSpawnEnemy(int spawnLocationChecks, float SpawnDist)
+    {
+
+        for (int i = 0; i < spawnLocationChecks; i++)
+        {
+            float randLocationX = UnityEngine.Random.Range(player.position.x + (-SpawnDist), player.position.x + SpawnDist);
+            float randLocationZ = UnityEngine.Random.Range(player.position.z + (-SpawnDist), player.position.z + SpawnDist);
+            Vector3 newPos = new Vector3(randLocationX, 1.5f, randLocationZ);
+            RaycastHit hit;
+            if(Physics.Raycast(newPos,Vector3.down, out hit, 10f, spawnMask))
+            {
+                return newPos;
+            }
+            else
+            {
+                Debug.Log("coords: " + newPos);
+            }
+        }
+        return Vector3.zero;
     }
 }

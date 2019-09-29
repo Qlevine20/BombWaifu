@@ -61,7 +61,10 @@ public class Explosion : MonoBehaviour
             if(rb != null)
             {
                 if(!rb.gameObject.CompareTag("Player"))
+                {
                     rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpwardsModifier);
+
+                }
             }
         }
     }
@@ -71,6 +74,10 @@ public class Explosion : MonoBehaviour
         // Damage
         EnemyBehaviour eBehav = colliderToDamage.GetComponent<EnemyBehaviour>();
         if(eBehav)
-            EnemyPool.Instance.ReturnToPool(eBehav);
+            eBehav.Die();
+    }
+
+    void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
