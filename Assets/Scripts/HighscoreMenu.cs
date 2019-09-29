@@ -22,7 +22,7 @@ public class HighscoreMenu : MonoBehaviour
             GameObject scoreText = Instantiate(highScoreTextPrefab);
             scoreText.transform.SetParent(content);
             scoreText.transform.SetAsLastSibling();
-            scoreText.GetComponent<Text>().text = score.name + "Score: " + score.scoreValue;
+            scoreText.GetComponent<Text>().text = "'" + score.name + "'" + " Score: " + score.scoreValue;
         }
     }
 
@@ -35,8 +35,8 @@ public class HighscoreMenu : MonoBehaviour
             if(score != string.Empty)
             {
                 GameManager.ScoreValue val = new GameManager.ScoreValue();
-                val.scoreValue = JsonUtility.FromJson<GameManager.ScoreValue>(score).scoreValue;
-                scores.Add(val);
+                GameManager.ScoreValue scoreInfo = JsonUtility.FromJson<GameManager.ScoreValue>(score);
+                scores.Add(scoreInfo);
             }
 
         }

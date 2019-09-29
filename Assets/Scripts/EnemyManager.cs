@@ -64,17 +64,20 @@ public class EnemyManager : MonoBehaviour
         GameOverPanel.SetActive(true);
         scoreText.text = "Score: " + GameManager.instance.GetScore();
         GetComponent<AudioSource>().Play();
+        Time.timeScale = 0.1f;
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.instance.SaveScore(nameInput.text);
         GameManager.instance.SetScore(0);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void MainMenuButton()
     {
+        Time.timeScale = 1;
         GameManager.instance.SaveScore(nameInput.text);
         GameManager.instance.SetScore(0);
         SceneManager.LoadScene("MainMenu");
