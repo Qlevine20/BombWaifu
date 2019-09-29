@@ -44,7 +44,7 @@ public class Bomb : MonoBehaviour
             for (int i = hits.Length - 1; i >= 0; i--)
             {
                 // Don't collide with self
-                if(hits[i].collider.gameObject == gameObject || hits[i].collider == owner)
+                if(hits[i].collider.gameObject == gameObject || hits[i].collider == owner || hits[i].collider.CompareTag("Bomb"))
                     continue;
 
                 transform.position = hits[i].point;

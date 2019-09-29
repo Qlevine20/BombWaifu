@@ -7,6 +7,7 @@ using TMPro;
 
 public class EnemyManager : MonoBehaviour
 {
+    GameManager gm => GameManager.instance;
     public static EnemyManager instance;
 
     public Transform player;
@@ -45,7 +46,7 @@ public class EnemyManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         GameOverPanel.SetActive(false);
-        GameManager.instance.SetScore(0);
+        gm.SetScore(0);
         UnityEngine.Random.InitState(DateTime.Now.Millisecond);
         StartCoroutine(SpawnEnemy(2));
     }

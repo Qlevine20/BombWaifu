@@ -105,11 +105,11 @@ public class PlayerController : MonoBehaviour
                             newBomb.transform.localScale = bombThrowLocation.localScale;
                             newBomb.gameObject.SetActive(true);
                             if(i == 0)
-                                newBomb.Throw(hit.point + Vector3.left, myCollider);
+                                newBomb.Throw(hit.point + -transform.right * 2, myCollider);
                             if(i == 1)
                                 newBomb.Throw(hit.point, myCollider);
                             if(i == 2)
-                                newBomb.Throw(hit.point + Vector3.right, myCollider);
+                                newBomb.Throw(hit.point + transform.right * 2, myCollider);
                         }
                     }
                     else
@@ -179,6 +179,11 @@ public class PlayerController : MonoBehaviour
 
     public void GainHeartUpgrade()
     {
+        if(hasHeartUpgrade)
+        {
+            heartUpgradTimer -= 3f;
+            return;
+        }
         hasHeartUpgrade = true;
     }
 }

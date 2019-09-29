@@ -13,6 +13,8 @@ public class EnemyBehaviour : MonoBehaviour
     private bool dying;
     public Material redMat;
     private Material defaultMat;
+
+    public float chanceToSpawnUpgrade;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if(collision.collider.tag == "Player")
         {
-            if(!em.collided)
+            if(!em.collided && !dying)
                 em.CollidedWithPlayer();
         }
     }
@@ -64,5 +66,12 @@ public class EnemyBehaviour : MonoBehaviour
         GameManager.instance.AddToScore(1);
         GetComponent<AudioSource>().clip = em.maleDeathSounds[Random.Range(0, em.maleDeathSounds.Length)];
         GetComponent<AudioSource>().Play();
+        if(Random.Range(0f, 100f) <= chanceToSpawnUpgrade)
+        {
+            HeartUpgrade hu = HeartUpgradePool.Instance.Get();
+            hu.transform.position = transform.position;
+            hu.transform.up = Vector3.up;
+            hu.gameObject.SetActive(true);
+        }
     }
 }

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 7973187358887191409}
   m_Layer: 0
   m_Name: Trail
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 4447218548514726180}
   m_Layer: 0
   m_Name: Potato Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
