@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,6 +50,14 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
         scores = new List<ScoreValue>();
+
+#if !UNITY_EDITOR
+        Canvas[] canvases = FindObjectsOfType<Canvas>();
+        foreach(Canvas canvas in canvases)
+        {
+            canvas.GetComponent<CanvasScaler>().enabled = true;
+        }
+#endif
 
         filePath = Application.persistentDataPath + "/scores.txt";
     }
