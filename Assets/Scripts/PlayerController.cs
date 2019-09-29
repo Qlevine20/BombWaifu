@@ -93,18 +93,35 @@ public class PlayerController : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 100, interactionMask))
                 {
-                    Bomb newBomb;
+                    //Bomb newBomb;
 
                     if(hasHeartUpgrade)
-                        newBomb = HeartBombPool.Instance.Get();
+                    {
+                        for(int i = 0; i < 3; i++)
+                        {
+                            HeartBomb newBomb = HeartBombPool.Instance.Get();
+                            newBomb.transform.position = bombThrowLocation.position;
+                            newBomb.transform.rotation = bombThrowLocation.rotation;
+                            newBomb.transform.localScale = bombThrowLocation.localScale;
+                            newBomb.gameObject.SetActive(true);
+                            if(i == 0)
+                                newBomb.Throw(hit.point + Vector3.left, myCollider);
+                            if(i == 1)
+                                newBomb.Throw(hit.point, myCollider);
+                            if(i == 2)
+                                newBomb.Throw(hit.point + Vector3.right, myCollider);
+                        }
+                    }
                     else
-                        newBomb = PotatoBombPool.Instance.Get();
+                    {
+                        PotatoBomb newBomb = PotatoBombPool.Instance.Get();
+                        newBomb.transform.position = bombThrowLocation.position;
+                        newBomb.transform.rotation = bombThrowLocation.rotation;
+                        newBomb.transform.localScale = bombThrowLocation.localScale;
+                        newBomb.gameObject.SetActive(true);
+                        newBomb.Throw(hit.point, myCollider);
+                    }
 
-                    newBomb.transform.position = bombThrowLocation.position;
-                    newBomb.transform.rotation = bombThrowLocation.rotation;
-                    newBomb.transform.localScale = bombThrowLocation.localScale;
-                    newBomb.gameObject.SetActive(true);
-                    newBomb.Throw(hit.point, myCollider);
                 }
                 bombThrowTimer = 0;
             }
