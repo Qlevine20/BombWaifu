@@ -64,6 +64,11 @@ public class EnemyManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     IEnumerator SpawnEnemy(int time)
     {
         yield return new WaitForSeconds(time);

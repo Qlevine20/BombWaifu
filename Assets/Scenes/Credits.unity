@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 136108230}
   - component: {fileID: 136108229}
   m_Layer: 5
-  m_Name: Main Menu Canvas
+  m_Name: Credits Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 1639790206}
   - component: {fileID: 1639790205}
   m_Layer: 0
-  m_Name: MenuManager
+  m_Name: CreditsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1639790204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c4550c02dbd1745820ce20c8e34d2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 266a22351d905e04cb799fd83548720b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1639790206
@@ -1159,7 +1159,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1639790205}
-        m_MethodName: StartButton
+        m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

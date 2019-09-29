@@ -5,9 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    void Start()
+    {
+        MusicManager.instance.PlayMainMenuMusic();
+    }
+
     public void StartButton()
     {
-        SceneManager.LoadScene("Quinn");
+        MusicManager.instance.PlayGameMusic();
+        SceneManager.LoadScene("Michael");
+    }
+
+    public void CreditsButton()
+    {
+        SceneManager.LoadScene("Credits");
     }
 
     public void QuitButton()
