@@ -8,6 +8,9 @@ public class EnemyBehaviour : MonoBehaviour
     UnityEngine.AI.NavMeshAgent agent;
     EnemyManager em;
     Animator anim;
+    public float deathTime;
+    private float deathTimer = 0;
+    private bool dying;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,19 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dying)
+        {
+            if(deathTimer >= deathTime)
+            {
+                deathTimer = 0;
+                dying = false;
+                agent.enabled = true;
+                EnemyPool.Instance.ReturnToPool(this);
+            }
+            deathTimer += Time.deltaTime;
+            return;
+        }
+
         if(agent && em)
         {
             agent.SetDestination(em.player.position);
@@ -34,5 +50,12 @@ public class EnemyBehaviour : MonoBehaviour
             if(!em.collided)
                 em.CollidedWithPlayer();
         }
+    }
+
+    public void Die()
+    {
+        agent.enabled = false;
+        dying = true;
+        GameManager.instance.AddToScore(1);
     }
 }
