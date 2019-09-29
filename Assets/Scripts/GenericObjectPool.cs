@@ -16,7 +16,7 @@ public abstract class GenericObjectPool<T> : MonoBehaviour where T : Component
     [SerializeField]
     private T prefab;
 
-    private Queue<T> objects = new Queue<T>();
+    public Queue<T> objects = new Queue<T>();
 
     public T Get ()
     {
@@ -31,7 +31,7 @@ public abstract class GenericObjectPool<T> : MonoBehaviour where T : Component
         objects.Enqueue(objectToReturn);
     }
 
-    private void AddObjects (int count)
+    public virtual void AddObjects (int count)
     {
         var newObject = GameObject.Instantiate(prefab);
         newObject.gameObject.SetActive(false);

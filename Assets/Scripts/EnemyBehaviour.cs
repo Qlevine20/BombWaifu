@@ -21,7 +21,11 @@ public class EnemyBehaviour : MonoBehaviour
         em = EnemyManager.instance;
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = agent.speed + (agent.speed * em.speedMod);
+        if (agent && em)
+        {
+            agent.speed = agent.speed + (agent.speed * em.speedMod);
+        }
+        
         anim.speed = anim.speed + (anim.speed * em.speedMod);
         defaultMat = GetComponent<Renderer>().material;
     }
