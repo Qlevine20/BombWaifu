@@ -75,7 +75,6 @@ public class PlayerController : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 100, interactionMask))
                 {
-                    Debug.Log(hit.point);
                     Bomb newBomb = BombPool.Instance.Get();
                     newBomb.transform.position = bombThrowLocation.position;
                     newBomb.transform.rotation = bombThrowLocation.rotation;

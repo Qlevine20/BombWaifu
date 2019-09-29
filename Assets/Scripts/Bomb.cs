@@ -24,6 +24,8 @@ public class Bomb : MonoBehaviour
     public Transform gfx;
     public float rotationSpeed;
 
+    public TrailRenderer trail;
+
 
     void Start()
     {
@@ -102,6 +104,14 @@ public class Bomb : MonoBehaviour
         distance = 0;
         duration = 0;
         flightTimer = 0;
+        trail.Clear();
         BombPool.Instance.ReturnToPool(this);
+    }
+    
+    void OnCollisionEnter(Collision other) {
+        if(other.collider.gameObject.CompareTag("Weebs"))
+        {
+            Explode();
+        }
     }
 }
