@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class HighscoreMenu : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class HighscoreMenu : MonoBehaviour
             GameObject scoreText = Instantiate(highScoreTextPrefab);
             scoreText.transform.SetParent(content);
             scoreText.transform.SetAsLastSibling();
-            scoreText.GetComponent<Text>().text = "Score: " + score.scoreValue;
+            scoreText.GetComponent<Text>().text = score.name + "Score: " + score.scoreValue;
         }
     }
 
@@ -33,12 +34,16 @@ public class HighscoreMenu : MonoBehaviour
         {
             if(score != string.Empty)
             {
-                Debug.Log(score);
                 GameManager.ScoreValue val = new GameManager.ScoreValue();
                 val.scoreValue = JsonUtility.FromJson<GameManager.ScoreValue>(score).scoreValue;
                 scores.Add(val);
             }
 
         }
+    }
+
+    public void BackButton()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

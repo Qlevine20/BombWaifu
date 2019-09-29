@@ -14,6 +14,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemyPrefab;
     private float timeModder = 0;
     private float timeChange = 5;
+    public TMP_InputField nameInput;
 
     public LayerMask spawnMask;
 
@@ -62,17 +63,19 @@ public class EnemyManager : MonoBehaviour
         collided = true;
         GameOverPanel.SetActive(true);
         scoreText.text = "Score: " + GameManager.instance.GetScore();
-        GameManager.instance.SaveScore();
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.instance.SaveScore(nameInput.text);
         GameManager.instance.SetScore(0);
     }
 
     public void MainMenuButton()
     {
+        GameManager.instance.SaveScore(nameInput.text);
+        GameManager.instance.SetScore(0);
         SceneManager.LoadScene("MainMenu");
     }
 

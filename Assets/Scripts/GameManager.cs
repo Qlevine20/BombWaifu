@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public class ScoreValue
     {
         public int scoreValue = 0;
+        public string name = "blank";
 
         public static IComparer<ScoreValue> value;
     }
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
         this.score = score;
     }
 
-    public void SaveScore()
+    public void SaveScore(string name)
     {
         if (File.Exists(filePath))
         {
@@ -85,6 +86,8 @@ public class GameManager : MonoBehaviour
         }
         ScoreValue newScore = new ScoreValue();
         newScore.scoreValue = score;
+        if(name != string.Empty)
+            newScore.name = name;
         scores.Add(newScore);
         sortScoreDescendingOrder sorter = new sortScoreDescendingOrder();
         scores.Sort(sorter);

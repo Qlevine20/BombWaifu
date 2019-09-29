@@ -21,6 +21,11 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
+    public void Leaderboard()
+    {
+        SceneManager.LoadScene("HighscoreBoard");
+    }
+
     public void QuitButton()
     {
         Application.Quit();

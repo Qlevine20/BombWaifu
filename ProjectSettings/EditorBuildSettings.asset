@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Michael.unity
     guid: 426c64bd837c04640bcba549140e26b2
+  - enabled: 1
+    path: Assets/Scenes/HighscoreBoard.unity
+    guid: c86bdc413a2f5ff4785ffa702d1b7015
   m_configObjects: {}
